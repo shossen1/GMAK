@@ -67,4 +67,4 @@ table1.fun<-function(data=data,
   write.csv(table1,"table1.csv")
 }
 
-table1.fun(tab1.df,df2.copd1)
+#table1.fun(tab1.df,df2.copd1)
