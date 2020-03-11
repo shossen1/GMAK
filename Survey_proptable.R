@@ -1,14 +1,21 @@
-# Required library
 
 svy.proptable = function(data = data,
-                         psu,
-                         weights,
-                         strata,
+                         psu = "psu",
+                         weights = "weights",
+                         strata = "strata",
                          outcome = "outcome",
                          predictors = varlist,
                          row_column = 1,
                          tablename = tablename){
   
+
+    if (!("survey" %in% rownames(installed.packages()))) {
+        message("Please install package survey")
+    }
+      if (!("DescTools" %in% rownames(installed.packages()))) {
+        message("Please install package DescTools")
+    }
+ 
 library(survey);library(DescTools)
   # Change the svydesign according to your data
 svydesign <- svydesign(ids=~psu, data=data, weights=~weights, strata = ~strata) 
@@ -39,6 +46,9 @@ svydesign <- svydesign(ids=~psu, data=data, weights=~weights, strata = ~strata)
 }
 
 svy.proptable (data= data,
+               psu = "psu",
+               weights = "weights",
+               strata = "strata",
                outcome = "outcome_variable",
                predictors = c("predictor1","predictor2","predictor3","predictor4"),
                tablename = Table2)
