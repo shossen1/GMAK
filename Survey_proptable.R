@@ -1,14 +1,18 @@
 # Required library
-library(haven);library(survey);library(DescTools)
-
-# Change the svydesign according to your data
-svydesign <- svydesign(ids=~psu, data=data, weights=~weights, strata = ~strata) 
 
 svy.proptable = function(data = data,
+                         psu,
+                         weights,
+                         strata,
                          outcome = "outcome",
                          predictors = varlist,
                          row_column = 1,
                          tablename = tablename){
+  
+library(survey);library(DescTools)
+  # Change the svydesign according to your data
+svydesign <- svydesign(ids=~psu, data=data, weights=~weights, strata = ~strata) 
+
   
   total_category = length(table(data[[outcome]]))
   tab = data.frame()
