@@ -6,6 +6,16 @@ svy.proptable = function(data = data,
                          predictors = varlist,
                          row_column = 1,
                          tablename = tablename){
+  
+    if (!requireNamespace("survey", quietly = TRUE)) {
+    stop("Package \"survey\" needed for this function to work. Please install it.",
+      call. = FALSE)
+  }
+  
+      if (!requireNamespace("DescTools", quietly = TRUE)) {
+    stop("Package \"DescTools\" needed for this function to work. Please install it.",
+      call. = FALSE)
+  }
 
 library(survey);library(DescTools)
   # Change the svydesign according to your data
