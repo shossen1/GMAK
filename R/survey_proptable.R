@@ -46,10 +46,10 @@ svydesign <- svydesign(ids=~psu, data=data, weights=~weights, strata = ~strata)
   write.csv(tab, paste(deparse(substitute(tablename)),".csv",sep=""))
 }
 
-svy.proptable (data= data,
-               psu = "psu",
-               weights = "weights",
-               strata = "strata",
-               outcome = "outcome_variable",
-               predictors = c("predictor1","predictor2","predictor3","predictor4"),
-               tablename = Table2)
+#svy.proptable (data= data,
+#               psu = "psu",
+#               weights = "weights",
+#               strata = "strata",
+#               outcome = "outcome_variable",
+#               predictors = c("predictor1","predictor2","predictor3","predictor4"),
+#               tablename = Table2)
