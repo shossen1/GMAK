@@ -1,3 +1,7 @@
+#' Analyzing DHS data and other survey data
+#'
+
+
 svy.proptable = function(data = data,
                          psu = "psu",
                          weights = "weights",
@@ -5,28 +9,28 @@ svy.proptable = function(data = data,
                          outcome = "outcome",
                          predictors = varlist,
                          tablename = tablename){
-  
+
   if (!requireNamespace("survey", quietly = TRUE)) {
     stop("Package \"survey\" needed for this function to work. Please install it.",
          call. = FALSE)
   }
-  
+
   if (!requireNamespace("DescTools", quietly = TRUE)) {
     stop("Package \"DescTools\" needed for this function to work. Please install it.",
          call. = FALSE)
   }
-  
+
 
   library(survey);library(DescTools)
   svydesign <- eval(parse(text=paste0("svydesign(ids=~",psu, ",data=data", ",weights=~",weights, ",strata=~",strata,")",sep="")))
 
   total_category = length(table(data[[outcome]]))
   tab = data.frame()
-  
+
   for (i in predictors){
     length = length(table(data[[i]]))+1
     tab0 = as.data.frame(matrix(ncol = total_category+1, nrow = 0))
-    
+
     for (j in c(1:length(table(data[[i]])))){
       observed = svytable(as.formula(paste0("(~",outcome,"+",i,")",sep="")),svydesign)[,j]
       total = sum(observed)
